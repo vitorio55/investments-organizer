@@ -1,6 +1,6 @@
 from enum import Enum
 
-class TipoInvestimento(str, Enum):
+class InvestmentType(str, Enum):
     CRI = "CRI"
     CRA = "CRA"
     LCA = "LCA"

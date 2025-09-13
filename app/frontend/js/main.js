@@ -1,22 +1,29 @@
-import { Cadastro } from './cadastro_vue.js';
-import { Busca } from './busca_vue.js';
-import { Delecao } from './delecao_vue.js';
-import { Listagem } from './listagem_vue.js';
-import { Estatisticas } from "./estatisticas_vue.js";
+import { Register } from './register_vue.js';
+import { Search } from './search_vue.js';
+import { Delete } from './delete_vue.js';
+import { Listing } from './listing_vue.js';
+import { Statistics } from "./statistics_vue.js";
+import { messages } from "./i18n.js";
 
 const { createApp } = Vue;
 
 const app = createApp({
   data() {
-    return { pagina: 'cadastro' };
+    return {
+        currentLang: 'pt',
+        page: 'register'
+    };
   },
   computed: {
-    paginaComponent() {
-      if (this.pagina === 'cadastro') return Cadastro;
-      if (this.pagina === 'busca') return Busca;
-      if (this.pagina === 'delecao') return Delecao;
-      if (this.pagina === 'listagem') return Listagem;
-      if (this.pagina === 'estatisticas') return Estatisticas;
+    pageComponent() {
+      if (this.page === 'register') return Register;
+      if (this.page === 'search') return Search;
+      if (this.page === 'delete') return Delete;
+      if (this.page === 'listing') return Listing;
+      if (this.page === 'statistics') return Statistics;
+    },
+    t() {
+      return messages[this.currentLang];
     }
   }
 });

@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 import os
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017/meubanco")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb://mongodb:27017/mydatabase")
 client = MongoClient(MONGO_URI)
-db = client.get_database()  # banco padrão definido na URI
-investimentos_collection = db.investimentos
+db = client.get_database()
+investments_collection = db.investments

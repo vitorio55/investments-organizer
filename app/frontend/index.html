@@ -8,18 +8,27 @@
 </head>
 <body>
   <div id="app">
+    <!-- Seletor de idioma fixo no topo -->
+    <div id="topbar">
+      <label for="lang" style="color: white;">🌐</label>
+      <select id="lang" v-model="currentLang">
+        <option value="pt">Português</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+
     <nav id="menu-lateral">
       <h2 style="color: yellow;">Menu</h2>
       <ul>
-        <li><button @click="pagina='cadastro'">Cadastro</button></li>
-        <li><button @click="pagina='busca'">Buscar</button></li>
-        <li><button @click="pagina='delecao'">Deletar</button></li>
-        <li><button @click="pagina='listagem'">Listagem</button></li>
-        <li><button @click="pagina='estatisticas'">Estatisticas</button></li>
+        <li><button @click="page='register'">{{ t.register }}</button></li>
+        <li><button @click="page='search'">{{ t.search }}</button></li>
+        <li><button @click="page='delete'">{{ t.delete }}</button></li>
+        <li><button @click="page='listing'">{{ t.listing }}</button></li>
+        <li><button @click="page='statistics'">{{ t.statistics }}</button></li>
       </ul>
     </nav>
     <div id="conteudo-principal">
-      <component :is="paginaComponent" class="fade-init"></component>
+      <component :is="pageComponent" :lang="currentLang || 'pt'" class="fade-init"></component>
     </div>
   </div>
   <script type="module" src="js/main.js"></script>

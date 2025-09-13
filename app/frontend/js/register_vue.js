@@ -1,33 +1,40 @@
 import { API_BASE_URL } from "./config.js";
+import { messages } from "./i18n.js";
 
-export const Cadastro = {
+export const Register = {
+  props: ['lang'],
   data() {
     return {
       form: {
-        nome: '',
-        tipo: '',
-        data_aquisicao: '',
-        data_vencimento: '',
-        quantia: '' // armazenará como number
+        name: '',
+        type: '',
+        acquisitionDate: '',
+        maturityDate: '',
+        amount: '',
       },
-      mensagem: ''
+      message: ''
     };
+  },
+  computed: {
+    t() {
+      return messages[this.lang];
+    }
   },
   template: `
     <div class="pagina-fadein fade-init">
       <div id="mensagem-sucesso" 
            class="mensagem-sucesso" 
-           :class="{ show: mensagem }">
-        {{ mensagem }}
+           :class="{ show: message }">
+        {{ message }}
       </div>
-      <h1>Cadastrar Investimento</h1>
-      <form @submit.prevent="salvar">
-        <label>Nome:
-          <input v-model="form.nome" required>
+      <h1>{{ t.registerInvestment }}</h1>
+      <form @submit.prevent="save">
+        <label>{{ t.name }}:
+          <input v-model="form.name" required>
         </label>
-        <label>Tipo:
-          <select v-model="form.tipo" required>
-            <option value="" disabled>Escolha um tipo</option>
+        <label>{{ t.type }}:
+          <select v-model="form.type" required>
+            <option value="" disabled>{{ t.chooseAType }}</option>
             <option value="CRI">CRI</option>
             <option value="CRA">CRA</option>
             <option value="LCA">LCA</option>
@@ -38,19 +45,19 @@ export const Cadastro = {
             <option value="Moeda">Moeda</option>
           </select>
         </label>
-        <label>Data de Aquisição:
-          <input type="date" v-model="form.data_aquisicao" required>
+        <label>{{ t.acquisitionDate }}:
+          <input type="date" v-model="form.acquisitionDate" required>
         </label>
-        <label>Data de Vencimento:
-          <input type="date" v-model="form.data_vencimento" required>
+        <label>{{ t.maturityDate }}:
+          <input type="date" v-model="form.maturityDate" required>
         </label>
-        <label>Quantia:
+        <label>{{ t.amount }}:
           <input type="text"
-                 :value="formatCurrency(form.quantia)"
+                 :value="formatCurrency(form.amount)"
                  @input="updateCurrency($event)"
                  required>
         </label>
-        <button type="submit">💾 Salvar Investimento</button>
+        <button type="submit">💾 {{ t.saveInvestment }}</button>
       </form>
     </div>
   `,
@@ -67,38 +74,38 @@ export const Cadastro = {
     updateCurrency(event) {
       let raw = event.target.value;
 
-      // Remove tudo que não seja dígito
+      // Remove all that is not a digit
       raw = raw.replace(/\D/g, '');
 
-      // Transformar em número com centavos
-      let number = parseFloat(raw) / 100; // últimos dois dígitos são centavos
+      // Transform in number with cents
+      let number = parseFloat(raw) / 100; // Last two digits are cents
       if (isNaN(number)) number = 0;
 
-      this.form.quantia = number;
+      this.form.amount = number;
 
-      // Atualiza input formatado
+      // Update formatted input
       event.target.value = new Intl.NumberFormat('pt-BR', {
         style: 'currency',
         currency: 'BRL'
       }).format(number);
     },
-    async salvar() {
+    async save() {
       try {
-        const response = await fetch(`${API_BASE_URL}/investimentos`, {
+        const response = await fetch(`${API_BASE_URL}/investments`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(this.form)
         });
 
-        if (!response.ok) throw new Error(`Erro HTTP: ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
         await response.json();
 
-        this.mensagem = "Investimento salvo com sucesso!";
-        setTimeout(() => this.mensagem = "", 3000);
+        this.message = this.t.investmentSavedSuccessfully;
+        setTimeout(() => this.message = "", 3000);
 
-        this.form = { nome: '', tipo: '', data_aquisicao: '', data_vencimento: '', quantia: '' };
+        this.form = { name: '', type: '', acquisitionDate: '', maturityDate: '', amount: '' };
       } catch (err) {
-        alert("Erro ao salvar: " + err.message);
+        alert("Error saving: " + err.message);
       }
     }
   }

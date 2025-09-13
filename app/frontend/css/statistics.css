@@ -63,3 +63,13 @@
 .soma-total {
   text-align: center;
 }
+
+.idioma-selector {
+  margin-bottom: 1rem;
+}
+
+.idioma-selector select {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 14px;
+}

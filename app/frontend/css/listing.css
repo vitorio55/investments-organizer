@@ -156,3 +156,13 @@
 .investimento-card ul.pagamento li:first-child {
     font-weight: 700;
 }
+
+.idioma-selector {
+  margin-bottom: 1rem;
+}
+
+.idioma-selector select {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 14px;
+}
