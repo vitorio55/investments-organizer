@@ -1,0 +1,171 @@
+/* BODY E FONTES GERAIS */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  color: #333;
+}
+
+/* TITULOS */
+h1 {
+  margin-top: 20px;
+  color: #2c3e50;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+h2 {
+  margin-top: 40px;
+  color: #34495e;
+}
+
+/* FORMULÁRIO (CADASTRO) */
+form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form label {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 15px;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+form button {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #3498db;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+form button:hover {
+  background: #2980b9;
+}
+
+.mensagem-sucesso,
+.mensagem-erro {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: 1000;
+  width: 80%;
+}
+
+.mensagem-sucesso {
+  background-color: #2ed573;
+  color: white;
+}
+
+.mensagem-erro {
+  background-color: #b82626;
+  color: white;
+}
+
+.mensagem-sucesso.show,
+.mensagem-erro.show {
+  opacity: 1;
+}
+
+/* LAYOUT PRINCIPAL */
+#app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Menu lateral */
+#menu-lateral {
+  width: 220px;
+  background-color: #34495e;
+  color: white;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+#menu-lateral h2 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+#menu-lateral ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu-lateral li {
+  margin: 10px 0;
+}
+
+/* Botões do menu */
+#menu-lateral button {
+  width: 100%;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  background-color: #34495e;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;  /* <-- mudou de left para center */
+  transition: background 0.3s;
+}
+
+#menu-lateral button:hover {
+  background-color: #2ecc71;
+  color: white;
+}
+
+#conteudo-principal {
+  flex: 1;
+  padding: 20px;
+  background: linear-gradient(to right, #74ebd5, #ACB6E5);
+  box-sizing: border-box;
+}
+
+.pagina-fadein {
+  opacity: 0;
+  animation: fadeInPage 1s forwards;
+}
+
+@keyframes fadeInPage {
+  to { opacity: 1; }
+}

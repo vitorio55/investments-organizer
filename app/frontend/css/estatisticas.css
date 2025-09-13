@@ -1,0 +1,65 @@
+.estatisticas-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 5px;
+  max-width: 400px;
+  margin: 40px auto;
+  text-align: center;
+}
+
+.estatisticas-card h2 {
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+.estatisticas-card .valor-total {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2ecc71;
+}
+
+.loading {
+  font-size: 18px;
+  color: #2980b9;
+  margin-top: 20px;
+}
+
+.estatisticas-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffffcc;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tabela-investimentos {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.tabela-investimentos th,
+.tabela-investimentos td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.tabela-investimentos th {
+  background: linear-gradient(135deg, #2980b9, #27ae60);
+  color: white;
+}
+
+.tabela-investimentos tr:nth-child(even) {
+  background: #f2f2f2;
+}
+
+.tabela-investimentos tr:hover {
+  background: #e1f5fe;
+}
+
+.soma-total {
+  text-align: center;
+}

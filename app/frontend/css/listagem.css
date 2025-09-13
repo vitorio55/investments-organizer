@@ -1,0 +1,158 @@
+#cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 50px auto 20px;
+}
+
+.investimento-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 15px;
+  flex: 1 1 250px;
+  max-width: 300px;
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.2s, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.investimento-card:hover {
+  transform: translateY(-5px);
+}
+
+.investimento-card.fade-out {
+  opacity: 0;
+}
+
+.investimento-card.fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.investimento-card h3 { color: #3498db; }
+.investimento-card p { margin: 5px 0; padding-bottom: 5px; border-top: 1px solid #dcdcdc; }
+
+.listagem-botoes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.listagem-botoes button {
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  color: white;
+  background: linear-gradient(135deg, #66be81, #2980b9);
+}
+
+.listagem-botoes button:hover {
+  background: linear-gradient(135deg, #2980b9, #1f5f8b);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.listagem-botoes button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.paginacao {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.paginacao button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+  background: linear-gradient(135deg, #66be81, #2980b9);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.paginacao button:hover {
+  background: linear-gradient(135deg, #2980b9, #27ae60);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.paginacao button:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+.paginacao button.ativo {
+  background: linear-gradient(135deg, #3498db, #2ecc71);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transform: scale(1.05);
+}
+
+
+/* Lista de pagamentos periódicos */
+.investimento-card ul {
+  list-style: none;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.investimento-card ul li {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  align-items: center;
+}
+
+.investimento-card ul li:last-child {
+  border-bottom: none;
+}
+
+.investimento-card ul li span.tipo {
+  font-weight: bold;
+  text-transform: capitalize;
+  color: #3498db;
+}
+
+.investimento-card ul li span.quantia {
+  font-weight: bold;
+  color: #27ae60;
+}
+
+.investimento-card ul li span.data {
+  color: #7f8c8d;
+  font-size: 13px;
+}
+
+.investimento-card ul.pagamento {
+    width: 100%;
+}
+
+.investimento-card ul.pagamento li:first-child {
+    font-weight: 700;
+}

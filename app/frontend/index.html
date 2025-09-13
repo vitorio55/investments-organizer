@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Investimentos</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <nav id="menu-lateral">
+      <h2 style="color: yellow;">Menu</h2>
+      <ul>
+        <li><button @click="pagina='cadastro'">Cadastro</button></li>
+        <li><button @click="pagina='busca'">Buscar</button></li>
+        <li><button @click="pagina='delecao'">Deletar</button></li>
+        <li><button @click="pagina='listagem'">Listagem</button></li>
+        <li><button @click="pagina='estatisticas'">Estatisticas</button></li>
+      </ul>
+    </nav>
+    <div id="conteudo-principal">
+      <component :is="paginaComponent" class="fade-init"></component>
+    </div>
+  </div>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
