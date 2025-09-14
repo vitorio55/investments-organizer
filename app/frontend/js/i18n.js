@@ -48,7 +48,7 @@ export const messages = {
             LCI: "LCI",
             Debenture: "Debenture",
             TesouroDireto: "Tesouro Direto",
-            FundoDeInvestimento: "Fundo de Investimento",
+            "Fundo de Investimento": "Fundo de Investimento",
             Moeda: "Moeda"
         }
     },
@@ -101,7 +101,7 @@ export const messages = {
             LCI: "LCI (Real Estate Credit Bill)",
             Debenture: "Debenture",
             TesouroDireto: "Brazilian Treasury Bonds",
-            FundoDeInvestimento: "Investment Fund",
+            "Fundo de Investimento": "Investment Fund",
             Moeda: "Currency"
         }
     }
