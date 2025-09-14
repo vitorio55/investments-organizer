@@ -39,7 +39,7 @@ export const Statistics = {
           <tbody>
             <tr v-for="inv in investments" :key="inv.id">
               <td>{{ inv.name }}</td>
-              <td>{{ inv.type }}</td>
+              <td>{{ t.investmentTypes[inv.type] }}</td>
               <td>R$ {{ formatNumber(inv.amount) }}</td>
               <td>{{ formatDate(inv.acquisition_date) }}</td>
               <td>{{ formatDate(inv.maturity_date) }}</td>
