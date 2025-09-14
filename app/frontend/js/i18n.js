@@ -1,6 +1,7 @@
-// i18n.js
 export const messages = {
     pt: {
+        title: "Investimentos",
+
         // Menu
         register: "Cadastro",
         search: "Buscar",
@@ -36,8 +37,22 @@ export const messages = {
         investmentSearchError: "Erro ao buscar investimento!",
         investmentDeletedSuccessfully: "Investimento deletado com sucesso!",
         errorDeletingInvestment: "Erro ao deletar investimento!",
+
+        investmentTypes: {
+            CDB: "CDB",
+            CRA: "CRA",
+            CRI: "CRI",
+            LCA: "LCA",
+            LCI: "LCI",
+            Debenture: "Debenture",
+            TesouroDireto: "Tesouro Direto",
+            FundoDeInvestimento: "Fundo de Investimento",
+            Moeda: "Moeda"
+        }
     },
     en: {
+        title: "Investments",
+
         // Menu
         register: "Register",
         search: "Search",
@@ -73,5 +88,17 @@ export const messages = {
         investmentSearchError: "Error while searching investment!",
         investmentDeletedSuccessfully: "Investment deleted sucessfully!",
         errorDeletingInvestment: "Error deleting investment!",
+
+        investmentTypes: {
+            CDB: "CDB (Bank Deposit Certificate)",
+            CRA: "CRA (Agribusiness Receivable Certificate)",
+            CRI: "CRI (Real Estate Receivable Certificate)",
+            LCA: "LCA (Agribusiness Credit Bill)",
+            LCI: "LCI (Real Estate Credit Bill)",
+            Debenture: "Debenture",
+            TesouroDireto: "Brazilian Treasury Bonds",
+            FundoDeInvestimento: "Investment Fund",
+            Moeda: "Currency"
+        }
     }
 };

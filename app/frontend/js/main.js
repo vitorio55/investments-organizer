@@ -25,6 +25,14 @@ const app = createApp({
     t() {
       return messages[this.currentLang];
     }
+  },
+  watch: {
+    currentLang(newLang) {
+      document.title = messages[newLang].title;
+    }
+  },
+  mounted() {
+    document.title = messages[this.currentLang].title;
   }
 });
 

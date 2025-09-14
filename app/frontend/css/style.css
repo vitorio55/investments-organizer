@@ -1,4 +1,3 @@
-/* BODY E FONTES GERAIS */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(to right, #74ebd5, #ACB6E5);
@@ -8,7 +7,6 @@ body {
   color: #333;
 }
 
-/* TITULOS */
 h1 {
   margin-top: 20px;
   color: #2c3e50;
@@ -20,7 +18,6 @@ h2 {
   color: #34495e;
 }
 
-/* FORMULÁRIO (CADASTRO) */
 form {
   max-width: 400px;
   margin: 20px auto;
@@ -70,8 +67,8 @@ form button:hover {
   background: #2980b9;
 }
 
-.mensagem-sucesso,
-.mensagem-erro {
+.success-message,
+.error-message {
   position: fixed;
   top: 20px;
   left: 50%;
@@ -89,29 +86,27 @@ form button:hover {
   width: 80%;
 }
 
-.mensagem-sucesso {
+.success-message {
   background-color: #2ed573;
   color: white;
 }
 
-.mensagem-erro {
+.error-message {
   background-color: #b82626;
   color: white;
 }
 
-.mensagem-sucesso.show,
-.mensagem-erro.show {
+.success-message.show,
+.error-message.show {
   opacity: 1;
 }
 
-/* LAYOUT PRINCIPAL */
 #app {
   display: flex;
   min-height: 100vh;
 }
 
-/* Menu lateral */
-#menu-lateral {
+#side-menu {
   width: 220px;
   background-color: #34495e;
   color: white;
@@ -119,23 +114,22 @@ form button:hover {
   box-sizing: border-box;
 }
 
-#menu-lateral h2 {
+#side-menu h2 {
   margin-top: 0;
   font-size: 22px;
 }
 
-#menu-lateral ul {
+#side-menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#menu-lateral li {
+#side-menu li {
   margin: 10px 0;
 }
 
-/* Botões do menu */
-#menu-lateral button {
+#side-menu button {
   width: 100%;
   padding: 10px 15px;
   font-weight: bold;
@@ -145,23 +139,23 @@ form button:hover {
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  text-align: center;  /* <-- mudou de left para center */
+  text-align: center;
   transition: background 0.3s;
 }
 
-#menu-lateral button:hover {
+#side-menu button:hover {
   background-color: #2ecc71;
   color: white;
 }
 
-#conteudo-principal {
+#main-content {
   flex: 1;
   padding: 20px;
   background: linear-gradient(to right, #74ebd5, #ACB6E5);
   box-sizing: border-box;
 }
 
-.pagina-fadein {
+.fadein-page {
   opacity: 0;
   animation: fadeInPage 1s forwards;
 }

@@ -16,17 +16,17 @@ export const Delete = {
     }
   },
   template: `
-    <div class="pagina-fadein fade-init">
-      <div id="mensagem-sucesso" class="mensagem-sucesso" :class="{ show: successMessage }">
+    <div class="fadein-page fade-init">
+      <div id="success-message" class="success-message" :class="{ show: successMessage }">
         {{ successMessage }}
       </div>
-      <div id="mensagem-erro" class="mensagem-erro" :class="{ show: errorMessage }">
+      <div id="error-message" class="error-message" :class="{ show: errorMessage }">
         {{ errorMessage }}
       </div>
 
       <h1>{{ t.deleteInvestment }}</h1>
 
-      <div class="deletar-container">
+      <div class="deletion-container">
         <label>{{ t.investmentId }}:
           <input type="text" v-model="investmentId" :placeholder="t.enterId">
         </label>

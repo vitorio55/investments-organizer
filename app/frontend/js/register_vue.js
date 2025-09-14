@@ -21,9 +21,9 @@ export const Register = {
     }
   },
   template: `
-    <div class="pagina-fadein fade-init">
-      <div id="mensagem-sucesso" 
-           class="mensagem-sucesso" 
+    <div class="fadein-page fade-init">
+      <div id="success-message" 
+           class="success-message" 
            :class="{ show: message }">
         {{ message }}
       </div>
@@ -35,21 +35,21 @@ export const Register = {
         <label>{{ t.type }}:
           <select v-model="form.type" required>
             <option value="" disabled>{{ t.chooseAType }}</option>
-            <option value="CRI">CRI</option>
-            <option value="CRA">CRA</option>
-            <option value="LCA">LCA</option>
-            <option value="LCI">LCI</option>
-            <option value="Debenture">Debenture</option>
-            <option value="CDB">CDB</option>
-            <option value="Fundo de Investimento">Fundo de Investimento</option>
-            <option value="Moeda">Moeda</option>
+            <option value="CDB">{{ t.investmentTypes["CDB"] }}</option>
+            <option value="CRA">{{ t.investmentTypes["CRA"] }}</option>
+            <option value="CRI">{{ t.investmentTypes["CRI"] }}</option>
+            <option value="LCA">{{ t.investmentTypes["LCA"] }}</option>
+            <option value="LCI">{{ t.investmentTypes["LCI"] }}</option>
+            <option value="Debenture">{{ t.investmentTypes["Debenture"] }}</option>
+            <option value="Fundo de Investimento">{{ t.investmentTypes["FundoDeInvestimento"] }}</option>
+            <option value="Moeda">{{ t.investmentTypes["Moeda"] }}</option>
           </select>
         </label>
         <label>{{ t.acquisitionDate }}:
-          <input type="date" v-model="form.acquisitionDate" required>
+          <input type="date" v-model="form.acquisition_date" required>
         </label>
         <label>{{ t.maturityDate }}:
-          <input type="date" v-model="form.maturityDate" required>
+          <input type="date" v-model="form.maturity_date" required>
         </label>
         <label>{{ t.amount }}:
           <input type="text"

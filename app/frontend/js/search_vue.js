@@ -16,14 +16,14 @@ export const Search = {
     }
   },
   template: `
-    <div class="pagina-fadein fade-init">
-      <div id="mensagem-erro" class="mensagem-erro" :class="{ show: errorMessage }">
+    <div class="fadein-page fade-init">
+      <div id="error-message" class="error-message" :class="{ show: errorMessage }">
         {{ errorMessage }}
       </div>
 
       <h1>{{ t.searchInvestment }}</h1>
 
-      <div class="buscar-container">
+      <div class="search-container">
         <label>{{ t.investmentId }}:
           <input type="text" v-model="investmentId" @keypress.enter.prevent="search" :placeholder="t.enterId">
         </label>

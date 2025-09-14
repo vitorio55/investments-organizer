@@ -1,4 +1,4 @@
-.buscar-container {
+.search-container {
   max-width: 400px;
   margin: 20px auto;
   padding: 15px;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.buscar-container input {
+.search-container input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -20,7 +20,7 @@
   margin-bottom: 10px;
 }
 
-.buscar-container button {
+.search-container button {
   width: 100%;
   padding: 10px;
   background: #2ecc71;
@@ -32,6 +32,6 @@
   transition: background 0.3s;
 }
 
-.buscar-container button:hover {
+.search-container button:hover {
   background: #27ae60;
 }

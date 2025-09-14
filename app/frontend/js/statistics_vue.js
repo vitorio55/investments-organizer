@@ -17,16 +17,16 @@ export const Statistics = {
     }
   },
   template: `
-    <div class="pagina-fadein fade-init">
+    <div class="fadein-page fade-init">
 
       <h1>📊 {{ t.investmentsStatistics }}</h1>
 
       <div v-if="loading" class="loading">{{ t.loadingStatistics }}</div>
-      <div v-else-if="error" class="mensagem-erro show">{{ error }}</div>
+      <div v-else-if="error" class="error-message show">{{ error }}</div>
       
-      <div v-else class="estatisticas-container">
+      <div v-else class="statistics-container">
 
-        <table class="tabela-investimentos">
+        <table class="investments-table">
           <thead>
             <tr>
               <th>{{ t.name }}</th>
@@ -48,9 +48,9 @@ export const Statistics = {
         </table>
       </div>
 
-      <div class="estatisticas-card soma-total">
+      <div class="statistics-card">
         <h2>💰 {{ t.investmentsTotalSum }}</h2>
-        <p class="valor-total">R$ {{ formatNumber(sum) }}</p>
+        <p class="total-sum">R$ {{ formatNumber(sum) }}</p>
       </div>
     </div>
   `,

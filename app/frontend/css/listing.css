@@ -7,7 +7,7 @@
   margin: 50px auto 20px;
 }
 
-.investimento-card {
+.investment-card {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -20,15 +20,15 @@
   opacity: 1;
 }
 
-.investimento-card:hover {
+.investment-card:hover {
   transform: translateY(-5px);
 }
 
-.investimento-card.fade-out {
+.investment-card.fade-out {
   opacity: 0;
 }
 
-.investimento-card.fade-in {
+.investment-card.fade-in {
   opacity: 0;
   animation: fadeIn 1.5s forwards;
 }
@@ -37,17 +37,17 @@
   to { opacity: 1; }
 }
 
-.investimento-card h3 { color: #3498db; }
-.investimento-card p { margin: 5px 0; padding-bottom: 5px; border-top: 1px solid #dcdcdc; }
+.investment-card h3 { color: #3498db; }
+.investment-card p { margin: 5px 0; padding-bottom: 5px; border-top: 1px solid #dcdcdc; }
 
-.listagem-botoes {
+.listing-buttons {
   display: flex;
   justify-content: center;
   gap: 15px;
   margin: 20px 0;
 }
 
-.listagem-botoes button {
+.listing-buttons button {
   padding: 12px 25px;
   font-size: 16px;
   font-weight: bold;
@@ -60,18 +60,18 @@
   background: linear-gradient(135deg, #66be81, #2980b9);
 }
 
-.listagem-botoes button:hover {
+.listing-buttons button:hover {
   background: linear-gradient(135deg, #2980b9, #1f5f8b);
   transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
-.listagem-botoes button:active {
+.listing-buttons button:active {
   transform: translateY(1px);
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.paginacao {
+.pagination {
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -79,7 +79,7 @@
   flex-wrap: wrap;
 }
 
-.paginacao button {
+.pagination button {
   padding: 10px 16px;
   border: none;
   border-radius: 8px;
@@ -92,26 +92,24 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.paginacao button:hover {
+.pagination button:hover {
   background: linear-gradient(135deg, #2980b9, #27ae60);
   transform: translateY(-2px);
   box-shadow: 0 6px 10px rgba(0,0,0,0.15);
 }
 
-.paginacao button:active {
+.pagination button:active {
   transform: translateY(1px);
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
 
-.paginacao button.ativo {
+.pagination button.active {
   background: linear-gradient(135deg, #3498db, #2ecc71);
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
   transform: scale(1.05);
 }
 
-
-/* Lista de pagamentos periódicos */
-.investimento-card ul {
+.investment-card ul {
   list-style: none;
   padding: 10px;
   margin-top: 10px;
@@ -120,7 +118,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.investimento-card ul li {
+.investment-card ul li {
   display: flex;
   justify-content: space-between;
   padding: 6px 10px;
@@ -129,40 +127,14 @@
   align-items: center;
 }
 
-.investimento-card ul li:last-child {
+.investment-card ul li:last-child {
   border-bottom: none;
 }
 
-.investimento-card ul li span.tipo {
-  font-weight: bold;
-  text-transform: capitalize;
-  color: #3498db;
-}
-
-.investimento-card ul li span.quantia {
-  font-weight: bold;
-  color: #27ae60;
-}
-
-.investimento-card ul li span.data {
-  color: #7f8c8d;
-  font-size: 13px;
-}
-
-.investimento-card ul.pagamento {
+.investment-card ul.periodic-payment {
     width: 100%;
 }
 
-.investimento-card ul.pagamento li:first-child {
+.investment-card ul.periodic-payment li:first-child {
     font-weight: 700;
-}
-
-.idioma-selector {
-  margin-bottom: 1rem;
-}
-
-.idioma-selector select {
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  font-size: 14px;
 }

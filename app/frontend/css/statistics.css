@@ -1,4 +1,4 @@
-.estatisticas-card {
+.statistics-card {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -8,12 +8,12 @@
   text-align: center;
 }
 
-.estatisticas-card h2 {
+.statistics-card h2 {
   color: #34495e;
   margin-bottom: 20px;
 }
 
-.estatisticas-card .valor-total {
+.statistics-card .total-sum {
   font-size: 28px;
   font-weight: bold;
   color: #2ecc71;
@@ -25,7 +25,7 @@
   margin-top: 20px;
 }
 
-.estatisticas-container {
+.statistics-container {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
@@ -34,42 +34,28 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-.tabela-investimentos {
+.investments-table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 30px;
 }
 
-.tabela-investimentos th,
-.tabela-investimentos td {
+.investments-table th,
+.investments-table td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: center;
 }
 
-.tabela-investimentos th {
+.investments-table th {
   background: linear-gradient(135deg, #2980b9, #27ae60);
   color: white;
 }
 
-.tabela-investimentos tr:nth-child(even) {
+.investments-table tr:nth-child(even) {
   background: #f2f2f2;
 }
 
-.tabela-investimentos tr:hover {
+.investments-table tr:hover {
   background: #e1f5fe;
-}
-
-.soma-total {
-  text-align: center;
-}
-
-.idioma-selector {
-  margin-bottom: 1rem;
-}
-
-.idioma-selector select {
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  font-size: 14px;
 }

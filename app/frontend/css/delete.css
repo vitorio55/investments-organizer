@@ -1,4 +1,4 @@
-.deletar-container {
+.deletion-container {
   max-width: 400px;
   margin: 20px auto;
   padding: 15px;
@@ -11,7 +11,7 @@
   align-items: center;
 }
 
-.deletar-container input {
+.deletion-container input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
@@ -20,7 +20,7 @@
   margin-bottom: 10px;
 }
 
-.deletar-container button {
+.deletion-container button {
   width: 100%;
   padding: 10px;
   background: #bf2f2f;

@@ -2,13 +2,12 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Investimentos</title>
+  <title>Investments</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
   <div id="app">
-    <!-- Seletor de idioma fixo no topo -->
     <div id="topbar">
       <label for="lang" style="color: white;">🌐</label>
       <select id="lang" v-model="currentLang">
@@ -17,7 +16,7 @@
       </select>
     </div>
 
-    <nav id="menu-lateral">
+    <nav id="side-menu">
       <h2 style="color: yellow;">Menu</h2>
       <ul>
         <li><button @click="page='register'">{{ t.register }}</button></li>
@@ -27,7 +26,7 @@
         <li><button @click="page='statistics'">{{ t.statistics }}</button></li>
       </ul>
     </nav>
-    <div id="conteudo-principal">
+    <div id="main-content">
       <component :is="pageComponent" :lang="currentLang || 'pt'" class="fade-init"></component>
     </div>
   </div>

@@ -14,19 +14,19 @@ export const Listing = {
     };
   },
   template: `
-    <div class="pagina-fadein fade-init">
+    <div class="fadein-page fade-init">
 
       <h1>{{ t.investments }}</h1>
 
-      <div class="listagem-botoes fade-init">
+      <div class="listing-buttons fade-init">
         <button @click="list('prev')" :disabled="currentPage === 1">⬅️ {{ t.previous }}</button>
         <button @click="list('next')" :disabled="currentPage === totalPages">{{ t.next }} ➡️</button>
       </div>
       
       <div id="cards-container" class="fade-init">
-        <div v-for="inv in investments" :key="inv.id" class="investimento-card fade-in">
-          <h3>{{ inv.nome }}</h3>
-          <p><strong>{{ t.type }}</strong><br>{{ inv.type }}</p>
+        <div v-for="inv in investments" :key="inv.id" class="investment-card fade-in">
+          <h3>{{ inv.name }}</h3>
+          <p><strong>{{ t.type }}</strong><br>{{ t.investmentTypes[inv.type] }}</p>
           <p><strong>{{ t.acquisitionDate }}</strong><br>{{ formatDate(inv.acquisition_date) }}</p>
           <p><strong>{{ t.maturityDate}}</strong><br>{{ formatDate(inv.maturity_date) }}</p>
           <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(inv.amount) }}</p>
@@ -38,7 +38,7 @@ export const Listing = {
 
           <ul v-if="expandById[inv.id]">
             <li v-for="periodic_payment in inv.periodic_payments" :key="periodic_payment.payment_date">
-              <ul class="pagamento">
+              <ul class="periodic-payment">
                 <li>💰 {{ formatDate(periodic_payment.payment_date) }}</li>
                 <li>{{ periodic_payment.type }}</li>
                 <li>R$ {{ formatNumber(periodic_payment.amount) }}</li>
@@ -48,13 +48,12 @@ export const Listing = {
         </div>
       </div>
 
-      <!-- Paginação -->
-      <div class="paginacao fade-init">
+      <div class="pagination fade-init">
         <button
           v-for="page in totalPages"
           :key="page"
           @click="goToPage(page)"
-          :class="{ ativo: page === currentPage }"
+          :class="{ active: page === currentPage }"
         >
           {{ page }}
         </button>
@@ -78,8 +77,8 @@ export const Listing = {
 
       const container = document.getElementById("cards-container");
       if (container) {
-        const cardsAtuais = Array.from(container.children);
-        cardsAtuais.forEach(card => card.classList.add("fade-out"));
+        const currentCards = Array.from(container.children);
+        currentCards.forEach(card => card.classList.add("fade-out"));
         await new Promise(resolve => setTimeout(resolve, 500));
       }
 

@@ -23,7 +23,7 @@ async def lifespan(app: FastAPI):
     except Exception as e:
         logger.error(f"Error loading seed investments: {e}")
 
-    yield # Após = shutdown
+    yield # After this line = executed on shutdown
 
     logger.info("App finalized. Add cleanup here if necessary.")
 
