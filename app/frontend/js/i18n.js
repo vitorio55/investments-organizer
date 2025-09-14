@@ -8,6 +8,7 @@ export const messages = {
         delete: "Deletar",
         listing: "Listagem",
         statistics: "Estatísticas",
+        calendar: "Calendário",
 
         // Páginas
         language: "Idioma",
@@ -37,6 +38,7 @@ export const messages = {
         investmentSearchError: "Erro ao buscar investimento!",
         investmentDeletedSuccessfully: "Investimento deletado com sucesso!",
         errorDeletingInvestment: "Erro ao deletar investimento!",
+        investmentCalendar: "Calendário de Vencimentos",
 
         investmentTypes: {
             CDB: "CDB",
@@ -59,6 +61,7 @@ export const messages = {
         delete: "Delete",
         listing: "Listing",
         statistics: "Statistics",
+        calendar: "Calendar",
 
         // Pages
         language: "Language",
@@ -88,6 +91,7 @@ export const messages = {
         investmentSearchError: "Error while searching investment!",
         investmentDeletedSuccessfully: "Investment deleted sucessfully!",
         errorDeletingInvestment: "Error deleting investment!",
+        investmentCalendar: "Investment Maturities Calendar",
 
         investmentTypes: {
             CDB: "CDB (Bank Deposit Certificate)",

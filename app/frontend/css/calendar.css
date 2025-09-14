@@ -1,0 +1,62 @@
+#calendar {
+  background: #34495e;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  font-family: "Segoe UI", sans-serif;
+  min-height: 800px;
+  max-width: 100%;
+  margin: 0 auto;
+  height: calc(100vh - 120px);
+  overflow: hidden;
+}
+
+.fc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.fc-toolbar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffdd57;
+}
+
+.fc-button {
+  background: #3a3a55 !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  transition: background 0.2s ease;
+}
+.fc-button:hover {
+  background: #ffdd57 !important;
+  color: #000 !important;
+}
+
+.fc-daygrid-day {
+  background: #2a2a3d;
+  border: 1px solid #444;
+}
+
+.fc-daygrid-day.fc-day-today {
+  background: #ffdd5730;
+}
+
+.fc-event {
+  border: none;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff;
+  transition: transform 0.1s ease;
+}
+
+.fc-event:hover {
+  transform: scale(1.05);
+}

@@ -88,6 +88,34 @@ def calculate_statistics():
         raise HTTPException(status_code=500, detail=f"Error calculating investment statistics: {str(e)}")
 
 
+@app.get("/investments/monthly")
+def get_investments_by_month(
+    year: int = Query(..., ge=1900),
+    month: int = Query(..., ge=1, le=12)
+):
+    try:
+        start_date = datetime(year, month, 1)
+        if month == 12:
+            end_date = datetime(year + 1, 1, 1)
+        else:
+            end_date = datetime(year, month + 1, 1)
+
+        investments_cursor = investments_collection.find({
+            "maturity_date": {"$gte": start_date, "$lt": end_date}
+        })
+
+        investments = []
+        for inv in investments_cursor:
+            inv["id"] = str(inv["_id"])
+            del inv["_id"]
+            investments.append(inv)
+
+        return {"year": year, "month": month, "investments": investments}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching monthly investments: {str(e)}")
+
+
 @app.get("/investments/{investment_id}")
 def get_investment(investment_id: str):
     if not ObjectId.is_valid(investment_id):
