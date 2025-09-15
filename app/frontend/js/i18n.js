@@ -39,6 +39,10 @@ export const messages = {
         investmentDeletedSuccessfully: "Investimento deletado com sucesso!",
         errorDeletingInvestment: "Erro ao deletar investimento!",
         investmentCalendar: "Calendário de Vencimentos",
+        monthlySummary: "Resumo do mês",
+        interest: "Juros",
+        amortization: "Amortizações",
+        maturity: "Vencimentos",
 
         investmentTypes: {
             CDB: "CDB",
@@ -92,6 +96,10 @@ export const messages = {
         investmentDeletedSuccessfully: "Investment deleted sucessfully!",
         errorDeletingInvestment: "Error deleting investment!",
         investmentCalendar: "Investment Maturities Calendar",
+        monthlySummary: "Monthly Summary",
+        interest: "Interest",
+        amortization: "Amortizations",
+        maturity: "Maturities",
 
         investmentTypes: {
             CDB: "CDB (Bank Deposit Certificate)",

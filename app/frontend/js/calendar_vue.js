@@ -6,7 +6,12 @@ export const InvestmentCalendar = {
   data() {
     return {
       investments: [],
-      calendar: null
+      calendar: null,
+      totals: {
+        interest: 0,
+        amortization: 0,
+        maturity: 0
+      }
     };
   },
   computed: {
@@ -23,8 +28,29 @@ export const InvestmentCalendar = {
   },
   template: `
     <div class="fadein-page fade-init">
-      <h1>📅 {{ t.investmentCalendar }}</h1>
-      <div id="calendar"></div>
+      <div>
+        <h1>📅 {{ t.investmentCalendar }}</h1>
+        <div id="calendar"></div>
+      </div>
+      <div class="totals-table">
+        <h2>{{ t.monthlySummary }}</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>{{ t.interest }}</th>
+              <th>{{ t.amortization }}</th>
+              <th>{{ t.maturity }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ formatCurrency(totals.interest) }}</td>
+              <td>{{ formatCurrency(totals.amortization) }}</td>
+              <td>{{ formatCurrency(totals.maturity) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   `,
   methods: {
@@ -34,6 +60,10 @@ export const InvestmentCalendar = {
         if (!response.ok) throw new Error("HTTP error: " + response.status);
         const data = await response.json();
         this.investments = data.investments || [];
+
+        this.totals.interest = data.total_interest || 0;
+        this.totals.amortization = data.total_amortization || 0;
+        this.totals.maturity = data.total_maturity_amount || 0;
 
         if (this.calendar) {
           this.calendar.removeAllEvents();
@@ -74,11 +104,15 @@ export const InvestmentCalendar = {
         },
         datesSet: (info) => {
           const titleEl = document.querySelector('.fc-toolbar-title');
+          let viewDate = info.start;
+          let monthNumber = 1;
           if (titleEl) {
             let newMonthName = info.view.title.trim();
+            monthNumber = this.getMonthNumberFromName(newMonthName.split(" ")[0]);
             newMonthName = newMonthName.charAt(0).toUpperCase() + newMonthName.slice(1);
             titleEl.textContent = newMonthName;
           }
+          this.loadEventsForMonth(viewDate.getFullYear(), monthNumber);
         }
       });
       this.calendar.render();
@@ -89,6 +123,30 @@ export const InvestmentCalendar = {
     formatDateISO(dateStr) {
       const date = new Date(dateStr);
       return date.toISOString().split('T')[0];
+    },
+    formatCurrency(value) {
+      return new Intl.NumberFormat(this.lang === "pt" ? "pt-BR" : "en-US", {
+        style: "currency",
+        currency: "BRL"
+      }).format(value);
+    },
+    getMonthNumberFromName(monthName) {
+      const months = {
+        pt: [
+          "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+          "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+        ],
+        en: [
+          "january", "february", "march", "april", "may", "june",
+          "july", "august", "september", "october", "november", "december"
+        ]
+     };
+
+      const index = months[this.lang]?.findIndex(
+        m => m.toLowerCase() === monthName.toLowerCase()
+      );
+
+      return index !== -1 ? index + 1 : null;
     },
     getColorByType(type) {
       const colors = {
