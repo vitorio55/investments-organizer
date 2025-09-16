@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException, Query
 from bson import ObjectId
 from datetime import datetime
-from database import investments_collection
-from entity.investment import Investment
-from entity.periodic_payment import EntryType
+from backend.database import investments_collection
+from backend.entity.investment import Investment
+from backend.entity.periodic_payment import EntryType
 
 router = APIRouter(prefix="/investments", tags=["Investments"])
 

@@ -2,13 +2,14 @@ import logging
 from datetime import datetime, date
 from enum import Enum
 
-from entity.investment import Investment
-from entity.investment_type import InvestmentType
-from entity.periodic_payment import EntryType
-from database import investments_collection
+from backend.database import investments_collection
+from backend.entity.investment_type import InvestmentType
+from backend.entity.periodic_payment import EntryType, PeriodicPayment
+from backend.entity.investment import Investment
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 def load_cri_seed_investments():
     if investments_collection.count_documents({}) > 8:
@@ -23,16 +24,8 @@ def load_cri_seed_investments():
             maturity_date=date(2026, 9, 1),
             amount=10000.0,
             periodic_payments=[
-                {
-                    "type": EntryType.INTEREST,
-                    "amount": 500,
-                    "payment_date": date(2023, 12, 1)
-                },
-                {
-                    "type": EntryType.AMORTIZATION,
-                    "amount": 1000.50,
-                    "payment_date": date(2024, 3, 1)
-                }
+                PeriodicPayment(type=EntryType.INTEREST, amount=500, payment_date=date(2023, 12, 1)),
+                PeriodicPayment(type=EntryType.AMORTIZATION, amount=1000.50, payment_date=date(2024, 3, 1)),
             ]
         )
     ]
@@ -48,7 +41,8 @@ def load_cri_seed_investments():
             converted_periodic_payments.append({
                 "type": p["type"].value if isinstance(p["type"], Enum) else p["type"],
                 "amount": float(p["amount"]),
-                "payment_date": datetime.combine(p["payment_date"], datetime.min.time()) if isinstance(p["payment_date"], date) else p["payment_date"]
+                "payment_date": datetime.combine(p["payment_date"], datetime.min.time()) if isinstance(
+                    p["payment_date"], date) else p["payment_date"]
             })
         inv_dict["periodic_payments"] = converted_periodic_payments
 

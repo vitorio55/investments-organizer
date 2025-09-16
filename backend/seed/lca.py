@@ -1,9 +1,9 @@
 import logging
 from datetime import datetime, date
 
-from entity.investment_type import InvestmentType
-from entity.investment import Investment
-from database import investments_collection
+from backend.entity.investment_type import InvestmentType
+from backend.entity.investment import Investment
+from backend.database import investments_collection
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

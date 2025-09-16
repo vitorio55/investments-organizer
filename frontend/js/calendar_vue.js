@@ -173,7 +173,7 @@ export const InvestmentCalendar = {
 
     setTimeout(() => {
       if (this.calendar) this.calendar.updateSize();
-    }, 50);
+    }, 25);
   },
   unmounted() {
     if (this.style) {
