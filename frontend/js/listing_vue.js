@@ -32,7 +32,10 @@ export const Listing = {
           <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(inv.amount) }}</p>
           <p><strong>ID</strong><br>{{ inv.id }}</p>
 
-          <button @click="toggleExpand(inv.id)">
+          <button
+            v-if="inv.periodic_payments && inv.periodic_payments.length > 0"
+            @click="toggleExpand(inv.id)"
+          >
             {{ expandById[inv.id] ? t.hidePayments : t.viewPayments }}
           </button>
 
@@ -40,7 +43,7 @@ export const Listing = {
             <li v-for="periodic_payment in inv.periodic_payments" :key="periodic_payment.payment_date">
               <ul class="periodic-payment">
                 <li>💰 {{ formatDate(periodic_payment.payment_date) }}</li>
-                <li>{{ periodic_payment.type }}</li>
+                <li>{{ t.entryTypes[periodic_payment.type] }}</li>
                 <li>R$ {{ formatNumber(periodic_payment.amount) }}</li>
               </ul>
             </li>

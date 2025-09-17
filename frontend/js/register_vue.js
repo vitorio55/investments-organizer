@@ -8,10 +8,12 @@ export const Register = {
       form: {
         name: '',
         type: '',
-        acquisitionDate: '',
-        maturityDate: '',
+        acquisition_date: '',
+        maturity_date: '',
         amount: '',
+        periodic_payments: []
       },
+      newPayment: { type: '', amount: '', payment_date: '' },
       message: ''
     };
   },
@@ -27,6 +29,7 @@ export const Register = {
            :class="{ show: message }">
         {{ message }}
       </div>
+
       <h1>{{ t.registerInvestment }}</h1>
       <form @submit.prevent="save">
         <label>{{ t.name }}:
@@ -57,6 +60,27 @@ export const Register = {
                  @input="updateCurrency($event)"
                  required>
         </label>
+
+        <h2>{{ t.periodicPayments }}</h2>
+        <div v-for="(p, index) in form.periodic_payments" :key="index" class="payment-row">
+          <span>{{ t.entryTypes[p.type] }} - {{ formatCurrency(p.amount) }} - {{ p.payment_date }}</span>
+          <button type="button" @click="removePayment(index)">❌</button>
+        </div>
+
+        <div class="new-payment">
+          <select v-model="newPayment.type">
+            <option value="" disabled>{{ t.chooseEntryType }}</option>
+            <option value="interest">{{ t.entryTypes['interest'] }}</option>
+            <option value="amortization">{{ t.entryTypes['amortization'] }}</option>
+          </select>
+          <input type="text"
+                 :placeholder="t.amount"
+                 :value="formatCurrency(newPayment.amount)"
+                 @input="updatePaymentCurrency($event)">
+          <input type="date" v-model="newPayment.payment_date">
+          <button type="button" @click="addPayment">➕ {{ t.addPayment }}</button>
+        </div>
+
         <button type="submit">💾 {{ t.saveInvestment }}</button>
       </form>
     </div>
@@ -72,26 +96,33 @@ export const Register = {
       }).format(value);
     },
     updateCurrency(event) {
-      let raw = event.target.value;
-
-      // Remove all that is not a digit
-      raw = raw.replace(/\D/g, '');
-
-      // Transform in number with cents
-      let number = parseFloat(raw) / 100; // Last two digits are cents
+      let raw = event.target.value.replace(/\D/g, '');
+      let number = parseFloat(raw) / 100;
       if (isNaN(number)) number = 0;
-
       this.form.amount = number;
-
-      // Update formatted input
-      event.target.value = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-      }).format(number);
+      event.target.value = this.formatCurrency(number);
+    },
+    updatePaymentCurrency(event) {
+      let raw = event.target.value.replace(/\D/g, '');
+      let number = parseFloat(raw) / 100;
+      if (isNaN(number)) number = 0;
+      this.newPayment.amount = number;
+      event.target.value = this.formatCurrency(number);
+    },
+    addPayment() {
+      if (!this.newPayment.type || !this.newPayment.amount || !this.newPayment.payment_date) {
+        alert(this.t.fillAllFields);
+        return;
+      }
+      this.form.periodic_payments.push({ ...this.newPayment });
+      this.newPayment = { type: '', amount: '', payment_date: '' };
+    },
+    removePayment(index) {
+      this.form.periodic_payments.splice(index, 1);
     },
     async save() {
       try {
-        const response = await fetch(`${API_BASE_URL}/investments`, {
+        const response = await fetch(`${API_BASE_URL}/investments/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(this.form)
@@ -103,7 +134,14 @@ export const Register = {
         this.message = this.t.investmentSavedSuccessfully;
         setTimeout(() => this.message = "", 3000);
 
-        this.form = { name: '', type: '', acquisitionDate: '', maturityDate: '', amount: '' };
+        this.form = {
+          name: '',
+          type: '',
+          acquisition_date: '',
+          maturity_date: '',
+          amount: '',
+          periodic_payments: []
+        };
       } catch (err) {
         alert("Error saving: " + err.message);
       }

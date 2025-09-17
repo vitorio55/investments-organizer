@@ -37,8 +37,8 @@ export const InvestmentCalendar = {
         <table>
           <thead>
             <tr>
-              <th>{{ t.interest }}</th>
-              <th>{{ t.amortization }}</th>
+              <th>{{ t.entryTypes['interest'] }}</th>
+              <th>{{ t.entryTypes['amortization'] }}</th>
               <th>{{ t.maturity }}</th>
             </tr>
           </thead>

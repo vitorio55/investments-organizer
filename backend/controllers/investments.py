@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Query
 from bson import ObjectId
-from datetime import datetime
+from datetime import datetime, date
+
 from backend.database import investments_collection
 from backend.entity.investment import Investment
 from backend.entity.periodic_payment import EntryType
@@ -42,6 +43,13 @@ def register_investment(investment: Investment):
     investment_dict = investment.model_dump()
     investment_dict["acquisition_date"] = datetime.combine(investment.acquisition_date, datetime.min.time())
     investment_dict["maturity_date"] = datetime.combine(investment.maturity_date, datetime.min.time())
+
+    if "periodic_payments" in investment_dict:
+        for payment in investment_dict["periodic_payments"]:
+            if isinstance(payment["payment_date"], date):
+                payment["payment_date"] = datetime.combine(
+                    payment["payment_date"], datetime.min.time()
+                )
 
     result = investments_collection.insert_one(investment_dict)
     if not result.acknowledged:

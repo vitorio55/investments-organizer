@@ -40,8 +40,14 @@ export const messages = {
         errorDeletingInvestment: "Erro ao deletar investimento!",
         investmentCalendar: "Calendário de Vencimentos",
         monthlySummary: "Resumo do mês",
-        interest: "Juros",
-        amortization: "Amortizações",
+        periodicPayments: "Pagamentos Periódicos",
+        chooseEntryType: "Escolha o tipo de lançamento",
+        addPayment: "Adicionar pagamento",
+        fillAllFields: "Preencha todos os campos para adicionar o pagamento",
+        entryTypes: {
+            interest: "Juros",
+            amortization: "Amortização"
+        },
         maturity: "Vencimentos",
 
         investmentTypes: {
@@ -97,8 +103,14 @@ export const messages = {
         errorDeletingInvestment: "Error deleting investment!",
         investmentCalendar: "Investment Maturities Calendar",
         monthlySummary: "Monthly Summary",
-        interest: "Interest",
-        amortization: "Amortizations",
+        periodicPayments: "Periodic Payments",
+        chooseEntryType: "Choose entry type",
+        addPayment: "Add payment",
+        fillAllFields: "Please fill all fields to add the payment",
+        entryTypes: {
+            interest: "Interest",
+            amortization: "Amortization"
+        },
         maturity: "Maturities",
 
         investmentTypes: {
