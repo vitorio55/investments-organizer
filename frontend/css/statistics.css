@@ -59,3 +59,19 @@
 .investments-table tr:hover {
   background: #e1f5fe;
 }
+
+.main-row {
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.main-row:hover {
+  background: #f1f1f1;
+}
+
+.payment-row td {
+  background: #fafafa;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #555;
+}

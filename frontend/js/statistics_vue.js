@@ -37,13 +37,21 @@ export const Statistics = {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="inv in investments" :key="inv.id">
-              <td>{{ inv.name }}</td>
-              <td>{{ t.investmentTypes[inv.type] }}</td>
-              <td>R$ {{ formatNumber(inv.amount) }}</td>
-              <td>{{ formatDate(inv.acquisition_date) }}</td>
-              <td>{{ formatDate(inv.maturity_date) }}</td>
-            </tr>
+            <template v-for="inv in investments" :key="inv.id">
+              <tr>
+                <td>{{ inv.name }}</td>
+                <td>{{ t.investmentTypes[inv.type] }}</td>
+                <td>R$ {{ formatNumber(inv.amount) }}</td>
+                <td>{{ formatDate(inv.acquisition_date) }}</td>
+                <td>{{ formatDate(inv.maturity_date) }}</td>
+              </tr>
+
+              <tr v-for="payment in inv.periodic_payments" :key="payment.payment_date">
+                <td colspan="5" style="padding-left: 30px; background: #f5f5f5;">
+                  💰 {{ formatDate(payment.payment_date) }} — {{ t.entryTypes[payment.type] }} — R$ {{ formatNumber(payment.amount) }}
+                </td>
+              </tr>
+            </template>
           </tbody>
         </table>
       </div>
@@ -75,7 +83,7 @@ export const Statistics = {
     },
     formatDate(data) {
       return new Date(data).toLocaleDateString("pt-BR");
-    },
+    }
   },
   mounted() {
     this.loadStatistics();

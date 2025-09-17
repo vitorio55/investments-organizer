@@ -24,6 +24,13 @@ def calculate_statistics():
                 "type": inv.get("type", ""),
                 "acquisition_date": str(inv.get("acquisition_date", 0)),
                 "maturity_date": str(inv.get("maturity_date", 0)),
+                "periodic_payments": [
+                    {
+                        "type": p.get("type"),
+                        "amount": float(p.get("amount", 0)),
+                        "payment_date": str(p.get("payment_date"))
+                    } for p in inv.get("periodic_payments", [])
+                ]
             }
 
             sum += investment["amount"]
