@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./config.js";
 import { messages } from "./i18n.js";
 
 export const Statistics = {
-  props: ['lang'],
+  props: ["lang"],
   data() {
     return {
       investments: [],
@@ -18,14 +18,12 @@ export const Statistics = {
   },
   template: `
     <div class="fadein-page fade-init">
-
       <h1>📊 {{ t.investmentsStatistics }}</h1>
 
       <div v-if="loading" class="loading">{{ t.loadingStatistics }}</div>
       <div v-else-if="error" class="error-message show">{{ error }}</div>
       
       <div v-else class="statistics-container">
-
         <table class="investments-table">
           <thead>
             <tr>
@@ -38,19 +36,33 @@ export const Statistics = {
           </thead>
           <tbody>
             <template v-for="inv in investments" :key="inv.id">
-              <tr>
-                <td>{{ inv.name }}</td>
+              <tr @click="toggleExpand(inv)" style="cursor:pointer">
+                <td>
+                  {{ inv.name }}
+                  <span v-if="inv.periodic_payments && inv.periodic_payments.length > 0">
+                    ▶
+                  </span>
+                </td>
                 <td>{{ t.investmentTypes[inv.type] }}</td>
                 <td>R$ {{ formatNumber(inv.amount) }}</td>
                 <td>{{ formatDate(inv.acquisition_date) }}</td>
                 <td>{{ formatDate(inv.maturity_date) }}</td>
               </tr>
 
-              <tr v-for="payment in inv.periodic_payments" :key="payment.payment_date">
-                <td colspan="5" style="padding-left: 30px; background: #f5f5f5;">
-                  💰 {{ formatDate(payment.payment_date) }} — {{ t.entryTypes[payment.type] }} — R$ {{ formatNumber(payment.amount) }}
-                </td>
-              </tr>
+              <transition-group name="expand" tag="tbody" class="payments-body">
+                <tr 
+                  v-for="(payment, idx) in inv.periodic_payments" 
+                  v-show="inv.expanded"
+                  :key="payment.payment_date"
+                  :class="['payment-row', idx % 2 === 0 ? 'even' : 'odd']"
+                >
+                  <td colspan="5" style="padding-left: 30px;">
+                    💰 {{ formatDate(payment.payment_date) }} — 
+                    {{ t.entryTypes[payment.type] }} — 
+                    R$ {{ formatNumber(payment.amount) }}
+                  </td>
+                </tr>
+              </transition-group>
             </template>
           </tbody>
         </table>
@@ -69,13 +81,22 @@ export const Statistics = {
         if (!response.ok) throw new Error("Error fetching statistics");
         const data = await response.json();
 
-        this.investments = data.investments || [];
+        this.investments = (data.investments || []).map(inv => ({
+          ...inv,
+          expanded: false
+        }));
+
         this.sum = data.sum || 0;
       } catch (err) {
         this.error = "Error loading statistics!";
         console.error(err);
       } finally {
         this.loading = false;
+      }
+    },
+    toggleExpand(inv) {
+      if (inv.periodic_payments && inv.periodic_payments.length > 0) {
+        inv.expanded = !inv.expanded;
       }
     },
     formatNumber(valor) {
