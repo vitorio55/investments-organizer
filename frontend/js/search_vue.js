@@ -56,11 +56,12 @@ export const Search = {
             :key="payment.payment_date"
           >
             <ul class="periodic-payment">
-              <li>💰 {{ formatDate(payment.payment_date) }}</li>
+              <li><span v-if="isPast(payment.payment_date)"> ✅</span>💰 {{ formatDate(payment.payment_date) }}</li>
               <li>{{ t.entryTypes[payment.type] }}</li>
               <li>R$ {{ formatNumber(payment.amount) }}</li>
             </ul>
           </li>
+          ✅ = {{ t.creditedPayments }}
         </ul>
       </div>
     </div>
@@ -102,6 +103,11 @@ export const Search = {
     },
     formatNumber(valor) {
       return Number(valor).toLocaleString("pt-BR", { minimumFractionDigits: 2 });
+    },
+    isPast(date) {
+      const today = new Date();
+      const paymentDate = new Date(date);
+      return paymentDate < today;
     }
   },
   mounted() {

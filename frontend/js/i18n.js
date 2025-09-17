@@ -49,6 +49,7 @@ export const messages = {
             amortization: "Amortização"
         },
         maturity: "Vencimentos",
+        creditedPayments: "Pagamentos já creditados",
 
         investmentTypes: {
             CDB: "CDB",
@@ -112,6 +113,7 @@ export const messages = {
             amortization: "Amortization"
         },
         maturity: "Maturities",
+        creditedPayments: "Payments already credited",
 
         investmentTypes: {
             CDB: "CDB (Bank Deposit Certificate)",

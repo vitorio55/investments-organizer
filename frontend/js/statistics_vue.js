@@ -57,7 +57,7 @@ export const Statistics = {
                   :class="['payment-row', idx % 2 === 0 ? 'even' : 'odd']"
                 >
                   <td colspan="5" style="padding-left: 30px;">
-                    💰 {{ formatDate(payment.payment_date) }} — 
+                    <span v-if="isPast(payment.payment_date)"> ✅</span> 💰 {{ formatDate(payment.payment_date) }} — 
                     {{ t.entryTypes[payment.type] }} — 
                     R$ {{ formatNumber(payment.amount) }}
                   </td>
@@ -66,6 +66,7 @@ export const Statistics = {
             </template>
           </tbody>
         </table>
+        ✅ = {{ t.creditedPayments }}
       </div>
 
       <div class="statistics-card">
@@ -104,6 +105,11 @@ export const Statistics = {
     },
     formatDate(data) {
       return new Date(data).toLocaleDateString("pt-BR");
+    },
+    isPast(date) {
+      const today = new Date();
+      const paymentDate = new Date(date);
+      return paymentDate < today;
     }
   },
   mounted() {
