@@ -8,9 +8,11 @@ from backend.database import investments_collection
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+SHOULD_NOT_SEED = True
+
 def load_lca_seed_investments():
-    if investments_collection.count_documents({}) > 8:
-        logger.info("❗❗❗ LCA seed investments not inserted into MongoDB")
+    if investments_collection.count_documents({}) > 6 or SHOULD_NOT_SEED:
+        logger.info(f"❗❗❗ LCA seed investments not inserted into MongoDB (SHOULD_NOT_SEED={SHOULD_NOT_SEED})")
         return
 
     seed_investments = [

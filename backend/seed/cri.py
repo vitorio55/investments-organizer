@@ -10,10 +10,11 @@ from backend.entity.investment import Investment
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+SHOULD_NOT_SEED = True
 
 def load_cri_seed_investments():
-    if investments_collection.count_documents({}) > 8:
-        logger.info("❗❗❗ CRI seed investments not inserted into MongoDB")
+    if investments_collection.count_documents({}) > 6 or SHOULD_NOT_SEED:
+        logger.info(f"❗❗❗ CRI seed investments not inserted into MongoDB (SHOULD_NOT_SEED={SHOULD_NOT_SEED})")
         return
 
     seed_investments = [

@@ -1,3 +1,4 @@
+from typing import List
 from fastapi import APIRouter, HTTPException, Query
 from bson import ObjectId
 from datetime import datetime, date
@@ -62,6 +63,36 @@ def register_investment(investment: Investment):
     if not result.acknowledged:
         raise HTTPException(status_code=500, detail="Error saving investment.")
     return {"id": str(result.inserted_id), "msg": "Investment saved successfully!"}
+
+
+@router.post("/batch")
+def register_investments_batch(investments: List[Investment]):
+    if not investments:
+        raise HTTPException(status_code=400, detail="No investments provided")
+
+    try:
+        investments_dicts = []
+        for inv in investments:
+            investment_dict = inv.model_dump()
+            investment_dict["acquisition_date"] = datetime.combine(inv.acquisition_date, datetime.min.time())
+            investment_dict["maturity_date"] = datetime.combine(inv.maturity_date, datetime.min.time())
+
+            if "periodic_payments" in investment_dict:
+                for payment in investment_dict["periodic_payments"]:
+                    if isinstance(payment["payment_date"], date):
+                        payment["payment_date"] = datetime.combine(
+                            payment["payment_date"], datetime.min.time()
+                        )
+            investments_dicts.append(investment_dict)
+
+        result = investments_collection.insert_many(investments_dicts)
+
+        inserted_ids = [str(_id) for _id in result.inserted_ids]
+
+        return {"inserted_count": len(inserted_ids), "inserted_ids": inserted_ids}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error inserting investments: {str(e)}")
 
 
 @router.get("/monthly")
