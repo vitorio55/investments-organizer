@@ -23,7 +23,7 @@ export const messages = {
         saveInvestment: "Salvar Investimento",
         viewPayments: "Ver pagamentos",
         hidePayments: "Ocultar pagamentos",
-        investmentsTotalSum: "Soma total dos investimentos",
+        investmentsMaturitiesSum: "Soma dos vencimentos",
         registerInvestment: "Cadastrar Investimento",
         chooseAType: "Escolha um tipo",
         searchInvestment: "Buscar Investimento",
@@ -59,7 +59,7 @@ export const messages = {
             LCI: "LCI",
             Debenture: "Debenture",
             TesouroDireto: "Tesouro Direto",
-            "Fundo de Investimento": "Fundo de Investimento",
+            FundoDeInvestimento: "Fundo de Investimento",
             Moeda: "Moeda"
         }
     },
@@ -87,7 +87,7 @@ export const messages = {
         saveInvestment: "Save Investment",
         viewPayments: "View payments",
         hidePayments: "Hide payments",
-        investmentsTotalSum: "Total sum of investments",
+        investmentsMaturitiesSum: "Maturities sum",
         registerInvestment: "Register Investment",
         chooseAType: "Choose a type",
         searchInvestment: "Search Investment",
@@ -123,7 +123,7 @@ export const messages = {
             LCI: "LCI (Real Estate Credit Bill)",
             Debenture: "Debenture",
             TesouroDireto: "Brazilian Treasury Bonds",
-            "Fundo de Investimento": "Investment Fund",
+            FundoDeInvestimento: "Investment Fund",
             Moeda: "Currency"
         }
     }

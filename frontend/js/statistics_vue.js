@@ -70,7 +70,7 @@ export const Statistics = {
       </div>
 
       <div class="statistics-card">
-        <h2>💰 {{ t.investmentsTotalSum }}</h2>
+        <h2>💰 {{ t.investmentsMaturitiesSum }}</h2>
         <p class="total-sum">R$ {{ formatNumber(sum) }}</p>
       </div>
     </div>

@@ -44,8 +44,9 @@ export const Register = {
             <option value="LCA">{{ t.investmentTypes["LCA"] }}</option>
             <option value="LCI">{{ t.investmentTypes["LCI"] }}</option>
             <option value="Debenture">{{ t.investmentTypes["Debenture"] }}</option>
-            <option value="Fundo de Investimento">{{ t.investmentTypes["FundoDeInvestimento"] }}</option>
+            <option value="FundoDeInvestimento">{{ t.investmentTypes["FundoDeInvestimento"] }}</option>
             <option value="Moeda">{{ t.investmentTypes["Moeda"] }}</option>
+            <option value="TesouroDireto">{{ t.investmentTypes["TesouroDireto"] }}</option>
           </select>
         </label>
         <label>{{ t.acquisitionDate }}:

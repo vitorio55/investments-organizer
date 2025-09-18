@@ -7,6 +7,6 @@ class InvestmentType(str, Enum):
     LCA = "LCA"
     LCI = "LCI"
     DEBENTURE = "Debenture"
-    TESOURO_DIRETO = "Tesouro Direto"
-    FUNDO_DE_INVESTIMENTO = "Fundo de Investimento"
+    TESOURO_DIRETO = "TesouroDireto"
+    FUNDO_DE_INVESTIMENTO = "FundoDeInvestimento"
     MOEDA = "Moeda"
