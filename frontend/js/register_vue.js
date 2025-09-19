@@ -10,7 +10,7 @@ export const Register = {
         type: '',
         acquisition_date: '',
         maturity_date: '',
-        amount: '',
+        amount_invested: '',
         periodic_payments: []
       },
       newPayment: { type: '', amount: '', payment_date: '' },
@@ -57,9 +57,12 @@ export const Register = {
         </label>
         <label>{{ t.amount }}:
           <input type="text"
-                 :value="formatCurrency(form.amount)"
+                 :value="formatCurrency(form.amount_invested)"
                  @input="updateCurrency($event)"
                  required>
+        </label>
+        <label>{{ t.platform }}:
+          <input v-model="form.platform" required>
         </label>
 
         <h2>{{ t.periodicPayments }}</h2>
@@ -100,7 +103,7 @@ export const Register = {
       let raw = event.target.value.replace(/\D/g, '');
       let number = parseFloat(raw) / 100;
       if (isNaN(number)) number = 0;
-      this.form.amount = number;
+      this.form.amount_invested = number;
       event.target.value = this.formatCurrency(number);
     },
     updatePaymentCurrency(event) {
@@ -140,7 +143,7 @@ export const Register = {
           type: '',
           acquisition_date: '',
           maturity_date: '',
-          amount: '',
+          amount_invested: '',
           periodic_payments: []
         };
       } catch (err) {

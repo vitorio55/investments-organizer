@@ -40,7 +40,7 @@ export const Search = {
         <p><strong>{{ t.type }}</strong><br>{{ t.investmentTypes[result.type] }}</p>
         <p><strong>{{ t.acquisitionDate }}</strong><br>{{ formatDate(result.acquisition_date) }}</p>
         <p><strong>{{ t.maturityDate }}</strong><br>{{ formatDate(result.maturity_date) }}</p>
-        <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(result.amount) }}</p>
+        <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(result.amount_invested) }}</p>
         <p><strong>ID</strong><br>{{ result.id }}</p>
 
         <button 
@@ -58,7 +58,7 @@ export const Search = {
             <ul class="periodic-payment">
               <li><span v-if="isPast(payment.payment_date)"> ✅</span>💰 {{ formatDate(payment.payment_date) }}</li>
               <li>{{ t.entryTypes[payment.type] }}</li>
-              <li>R$ {{ formatNumber(payment.amount) }}</li>
+              <li>R$ {{ formatNumber(payment.amount_invested) }}</li>
             </ul>
           </li>
           ✅ = {{ t.creditedPayments }}

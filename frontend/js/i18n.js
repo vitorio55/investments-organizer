@@ -50,6 +50,7 @@ export const messages = {
         },
         maturity: "Vencimentos",
         creditedPayments: "Pagamentos já creditados",
+        platform: "Plataforma",
 
         investmentTypes: {
             CDB: "CDB",
@@ -114,6 +115,7 @@ export const messages = {
         },
         maturity: "Maturities",
         creditedPayments: "Payments already credited",
+        platform: "Platform",
 
         investmentTypes: {
             CDB: "CDB (Bank Deposit Certificate)",

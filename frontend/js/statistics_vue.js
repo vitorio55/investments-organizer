@@ -44,7 +44,7 @@ export const Statistics = {
                   </span>
                 </td>
                 <td>{{ t.investmentTypes[inv.type] }}</td>
-                <td>R$ {{ formatNumber(inv.amount) }}</td>
+                <td>R$ {{ formatNumber(inv.amount_invested) }}</td>
                 <td>{{ formatDate(inv.acquisition_date) }}</td>
                 <td>{{ formatDate(inv.maturity_date) }}</td>
               </tr>

@@ -7,7 +7,7 @@ export const Listing = {
     return {
       investments: [],
       skip: 0,
-      limit: 5,
+      limit: 8,
       totalInvestments: 0,
       currentPage: 1,
       expandById: {}
@@ -24,12 +24,24 @@ export const Listing = {
       </div>
       
       <div id="cards-container" class="fade-init">
-        <div v-for="inv in investments" :key="inv.id" class="investment-card fade-in">
-          <h3>{{ inv.name }}</h3>
+        <div 
+          v-for="inv in investments" 
+          :key="inv.id" 
+          class="investment-card fade-in"
+          :class="{
+            'btg-card': inv.platform === 'BTG',
+            'xpi-card': inv.platform === 'XPI' 
+          }"
+        >
+          <h3 :class="{
+            'btg-h3': inv.platform === 'BTG',
+            'xpi-h3': inv.platform === 'XPI' 
+          }">{{ inv.name }}</h3>
           <p><strong>{{ t.type }}</strong><br>{{ t.investmentTypes[inv.type] }}</p>
           <p><strong>{{ t.acquisitionDate }}</strong><br>{{ formatDate(inv.acquisition_date) }}</p>
           <p><strong>{{ t.maturityDate}}</strong><br>{{ formatDate(inv.maturity_date) }}</p>
-          <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(inv.amount) }}</p>
+          <p><strong>{{ t.amount }}</strong><br>R$ {{ formatNumber(inv.amount_invested) }}</p>
+          <p><strong>{{ t.platform }}</strong><br>{{ inv.platform }}</p>
           <p><strong>ID</strong><br>{{ inv.id }}</p>
 
           <button
@@ -41,7 +53,12 @@ export const Listing = {
 
           <ul v-if="expandById[inv.id]">
             <li v-for="periodic_payment in inv.periodic_payments" :key="periodic_payment.payment_date">
-              <ul class="periodic-payment">
+              <ul class="periodic-payment"
+                  :class="{
+                    'btg-ul': inv.platform === 'BTG',
+                    'xpi-ul': inv.platform === 'XPI' 
+                  }"
+              >
                 <li>💰 {{ formatDate(periodic_payment.payment_date) }}</li>
                 <li>{{ t.entryTypes[periodic_payment.type] }}</li>
                 <li>R$ {{ formatNumber(periodic_payment.amount) }}</li>

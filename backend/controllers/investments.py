@@ -21,7 +21,7 @@ def calculate_statistics():
             investment = {
                 "id": str(inv["_id"]),
                 "name": inv.get("name", ""),
-                "amount": float(inv.get("amount", 0)),
+                "amount_invested": float(inv.get("amount_invested", 0)),
                 "type": inv.get("type", ""),
                 "acquisition_date": str(inv.get("acquisition_date", 0)),
                 "maturity_date": str(inv.get("maturity_date", 0)),
@@ -34,7 +34,7 @@ def calculate_statistics():
                 ]
             }
 
-            sum += investment["amount"]
+            sum += investment["amount_invested"]
             investments.append(investment)
 
         return {
@@ -76,6 +76,7 @@ def register_investments_batch(investments: List[Investment]):
             investment_dict = inv.model_dump()
             investment_dict["acquisition_date"] = datetime.combine(inv.acquisition_date, datetime.min.time())
             investment_dict["maturity_date"] = datetime.combine(inv.maturity_date, datetime.min.time())
+            investment_dict["approximate_current_value_last_update"] = datetime.now()
 
             if "periodic_payments" in investment_dict:
                 for payment in investment_dict["periodic_payments"]:
@@ -126,7 +127,7 @@ def get_investments_by_month(
                 elif payment["type"] == EntryType.AMORTIZATION:
                     total_amortization += float(payment.get("amount", 0.0))
 
-            total_amount += inv.get("amount", 0.0)
+            total_amount += inv.get("amount_invested", 0.0)
             investments.append(inv)
 
         return {

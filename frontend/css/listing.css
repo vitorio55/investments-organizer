@@ -37,7 +37,8 @@
   to { opacity: 1; }
 }
 
-.investment-card h3 { color: #3498db; }
+.investment-card h3.btg-h3 { color: #3498db; }
+.investment-card h3.xpi-h3 { color: yellow; }
 .investment-card p { margin: 5px 0; padding-bottom: 5px; border-top: 1px solid #dcdcdc; }
 
 .listing-buttons {
@@ -110,10 +111,23 @@
 }
 
 .investment-card ul {
+  padding-left: 0;
+}
+
+.investment-card ul.btg-ul {
   list-style: none;
   padding: 10px;
   margin-top: 10px;
-  background-color: #f9f9f9;
+  background-color: #417ab1;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.investment-card ul.xpi-ul {
+  list-style: none;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #696969;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
@@ -137,4 +151,14 @@
 
 .investment-card ul.periodic-payment li:first-child {
     font-weight: 700;
+}
+
+.investment-card.btg-card {
+  background: #0d4c77;
+  color: white;
+}
+
+.investment-card.xpi-card {
+  background: #2c2c2d;
+  color: white;
 }
