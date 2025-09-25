@@ -5,7 +5,7 @@ export const InvestmentCalendar = {
   props: ['lang'],
   data() {
     return {
-      investments: [],
+      events: [],
       calendar: null,
       totals: {
         interest: 0,
@@ -59,7 +59,7 @@ export const InvestmentCalendar = {
         const response = await fetch(`${API_BASE_URL}/investments/monthly?year=${year}&month=${month}`);
         if (!response.ok) throw new Error("HTTP error: " + response.status);
         const data = await response.json();
-        this.investments = data.investments || [];
+        this.events = data.events || [];
 
         this.totals.interest = data.total_interest || 0;
         this.totals.amortization = data.total_amortization || 0;
@@ -67,16 +67,18 @@ export const InvestmentCalendar = {
 
         if (this.calendar) {
           this.calendar.removeAllEvents();
-          this.investments.forEach(inv => {
+          this.events.forEach(inv => {
+            const translatedType = this.t.entryTypes[inv.type] || inv.type;
+
             this.calendar.addEvent({
-              title: `${inv.name} (${inv.type})`,
+              title: `[${translatedType}] ${inv.name}`,
               start: this.formatDateISO(inv.maturity_date),
               color: this.getColorByType(inv.type)
             });
           });
         }
       } catch (err) {
-        console.error("Error loading investments:", err);
+        console.error("Error loading events:", err);
       }
     },
     renderCalendar() {
@@ -150,15 +152,18 @@ export const InvestmentCalendar = {
     },
     getColorByType(type) {
       const colors = {
-        CRI: '#0077cc',
-        CRA: '#28a745',
-        LCA: '#ffc107',
-        LCI: '#6f42c1',
-        CDB: '#fd7e14',
-        Debenture: '#dc3545',
-        "Fundo de Investimento": '#20c997',
-        Moeda: '#17a2b8',
-        default: '#6c757d'
+        // CRI: '#0077cc',
+        // CRA: '#28a745',
+        // LCA: '#ffc107',
+        // LCI: '#6f42c1',
+        // CDB: '#fd7e14',
+        // Debenture: '#dc3545',
+        // "Fundo de Investimento": '#20c997',
+        // Moeda: '#17a2b8',
+        maturity: '#dc3545',
+        interest: '#0077cc',
+        amortization: '#fd7e14',
+        default: '#6c757d',
       };
       return colors[type] || colors.default;
     }

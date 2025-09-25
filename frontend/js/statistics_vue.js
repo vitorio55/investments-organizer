@@ -6,7 +6,8 @@ export const Statistics = {
   data() {
     return {
       investments: [],
-      sum: 0,
+      amount_invested_sum: 0,
+      approximate_current_value_sum: 0,
       loading: true,
       error: null
     };
@@ -71,7 +72,9 @@ export const Statistics = {
 
       <div class="statistics-card">
         <h2>💰 {{ t.investmentsMaturitiesSum }}</h2>
-        <p class="total-sum">R$ {{ formatNumber(sum) }}</p>
+        <p class="total-sum">R$ {{ formatNumber(amount_invested_sum) }}</p>
+        <h2>💰 {{ t.approximateCurrentValuesSum }}</h2>
+        <p class="total-sum">R$ {{ formatNumber(approximate_current_value_sum) }}</p>
       </div>
     </div>
   `,
@@ -87,7 +90,8 @@ export const Statistics = {
           expanded: false
         }));
 
-        this.sum = data.sum || 0;
+        this.amount_invested_sum = data.amount_invested_sum || 0;
+        this.approximate_current_value_sum = data.approximate_current_value_sum || 0;
       } catch (err) {
         this.error = "Error loading statistics!";
         console.error(err);

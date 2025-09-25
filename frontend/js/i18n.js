@@ -24,6 +24,7 @@ export const messages = {
         viewPayments: "Ver pagamentos",
         hidePayments: "Ocultar pagamentos",
         investmentsMaturitiesSum: "Soma dos vencimentos",
+        approximateCurrentValuesSum: "Soma dos valores atuais aproximados",
         registerInvestment: "Cadastrar Investimento",
         chooseAType: "Escolha um tipo",
         searchInvestment: "Buscar Investimento",
@@ -46,7 +47,8 @@ export const messages = {
         fillAllFields: "Preencha todos os campos para adicionar o pagamento",
         entryTypes: {
             interest: "Juros",
-            amortization: "Amortização"
+            amortization: "Amortização",
+            maturity: "Vencimento"
         },
         maturity: "Vencimentos",
         creditedPayments: "Pagamentos já creditados",
@@ -89,6 +91,7 @@ export const messages = {
         viewPayments: "View payments",
         hidePayments: "Hide payments",
         investmentsMaturitiesSum: "Maturities sum",
+        approximateCurrentValuesSum: "Approximate current values sum",
         registerInvestment: "Register Investment",
         chooseAType: "Choose a type",
         searchInvestment: "Search Investment",
@@ -111,7 +114,8 @@ export const messages = {
         fillAllFields: "Please fill all fields to add the payment",
         entryTypes: {
             interest: "Interest",
-            amortization: "Amortization"
+            amortization: "Amortization",
+            maturity: "Maturity"
         },
         maturity: "Maturities",
         creditedPayments: "Payments already credited",

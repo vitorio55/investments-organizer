@@ -6,6 +6,8 @@ from datetime import datetime, date
 from backend.database import investments_collection
 from backend.entity.investment import Investment
 from backend.entity.periodic_payment import EntryType
+from backend.repository.investment_repository import InvestmentRepository
+from backend.repository.periodic_payment_repository import PeriodicPaymentRepository
 
 router = APIRouter(prefix="/investments", tags=["Investments"])
 
@@ -15,13 +17,15 @@ def calculate_statistics():
         cursor = investments_collection.find()
 
         investments = []
-        sum = 0.0
+        amount_invested_sum = 0.0
+        approximate_current_value_sum = 0.0
 
         for inv in cursor:
             investment = {
                 "id": str(inv["_id"]),
                 "name": inv.get("name", ""),
                 "amount_invested": float(inv.get("amount_invested", 0)),
+                "approximate_current_value": float(inv.get("approximate_current_value", 0)),
                 "type": inv.get("type", ""),
                 "acquisition_date": str(inv.get("acquisition_date", 0)),
                 "maturity_date": str(inv.get("maturity_date", 0)),
@@ -34,11 +38,13 @@ def calculate_statistics():
                 ]
             }
 
-            sum += investment["amount_invested"]
+            amount_invested_sum += investment["amount_invested"]
+            approximate_current_value_sum += investment["approximate_current_value"]
             investments.append(investment)
 
         return {
-            "sum": sum,
+            "amount_invested_sum": amount_invested_sum,
+            "approximate_current_value_sum": approximate_current_value_sum,
             "investments": investments
         }
 
@@ -108,11 +114,10 @@ def get_investments_by_month(
         else:
             end_date = datetime(year, month + 1, 1)
 
-        investments_cursor = investments_collection.find({
-            "maturity_date": {"$gte": start_date, "$lt": end_date}
-        })
+        investments_cursor = InvestmentRepository.find_by_maturity_date_range(start_date, end_date)
+        periodic_payments_cursor = PeriodicPaymentRepository.find_by_payment_date_range(start_date, end_date)
 
-        investments = []
+        events = []
         total_interest = 0.0
         total_amortization = 0.0
         total_amount = 0.0
@@ -121,19 +126,27 @@ def get_investments_by_month(
             inv["id"] = str(inv["_id"])
             del inv["_id"]
 
-            for payment in inv.get("periodic_payments", []):
-                if payment["type"] == EntryType.INTEREST:
-                    total_interest += float(payment.get("amount", 0.0))
-                elif payment["type"] == EntryType.AMORTIZATION:
-                    total_amortization += float(payment.get("amount", 0.0))
+            inv["type"] = "maturity"
 
             total_amount += inv.get("amount_invested", 0.0)
-            investments.append(inv)
+            events.append(inv)
+
+        for payment in periodic_payments_cursor:
+            if payment["type"] == EntryType.INTEREST:
+                total_interest += payment["amount"]
+            else: # EntryType.AMORTIZATION
+                total_amortization += payment["amount"]
+
+            events.append({
+                "name": payment["name"],
+                "maturity_date": payment["payment_date"],
+                "type": payment["type"]
+            })
 
         return {
             "year": year,
             "month": month,
-            "investments": investments,
+            "events": events,
             "total_interest": total_interest,
             "total_amortization": total_amortization,
             "total_maturity_amount": total_amount,

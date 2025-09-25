@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend.seed.cri import load_cri_seed_investments
 from backend.seed.lca import load_lca_seed_investments
-from backend.controllers.investments import router as investments_router
+from backend.controllers.investments_controller import router as investments_router
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
