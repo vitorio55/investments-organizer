@@ -73,7 +73,8 @@ export const InvestmentCalendar = {
             this.calendar.addEvent({
               title: `[${translatedType}] ${inv.name}`,
               start: this.formatDateISO(inv.maturity_date),
-              color: this.getColorByType(inv.type)
+              color: this.getColorByType(inv.type),
+              amount: inv.amount
             });
           });
         }
@@ -115,6 +116,16 @@ export const InvestmentCalendar = {
             titleEl.textContent = newMonthName;
           }
           this.loadEventsForMonth(viewDate.getFullYear(), monthNumber);
+        },
+        eventDidMount: (info) => {
+          tippy(info.el, {
+            content: `
+              <strong>${info.event.title}</strong><br>
+              Valor: ${this.formatCurrency(info.event.extendedProps.amount || 0)}
+            `,
+            allowHTML: true,
+            theme: 'light-border',
+          });
         }
       });
       this.calendar.render();

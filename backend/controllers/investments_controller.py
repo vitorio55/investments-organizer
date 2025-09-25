@@ -129,6 +129,10 @@ def get_investments_by_month(
             inv["type"] = "maturity"
 
             total_amount += inv.get("amount_invested", 0.0)
+
+            inv["amount"] = inv.get("amount_invested", 0.0)
+            del inv["amount_invested"]
+
             events.append(inv)
 
         for payment in periodic_payments_cursor:
@@ -140,7 +144,8 @@ def get_investments_by_month(
             events.append({
                 "name": payment["name"],
                 "maturity_date": payment["payment_date"],
-                "type": payment["type"]
+                "type": payment["type"],
+                "amount": payment["amount"],
             })
 
         return {
